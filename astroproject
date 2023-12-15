@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+EXEC_PATH="/opt/astroproject"
+exec ${EXEC_PATH}/astroproject.sh
