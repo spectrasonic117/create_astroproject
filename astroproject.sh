@@ -1,13 +1,16 @@
 #!/usr/bin/env bash
 
+# Scirpt para crear un proyecto de astro basado en los proyectos que yo utilizo!
+
 echo "
 ╭─────╮  Houston:
-│ ● $(tput setaf 2)◡ $(tput sgr 0)●  Bienvenido, Astronauta! 🚀 
-╰─────╯"
+│ ● $(tput setaf 2)◡ $(tput sgr 0)●  Bienvenido, Astronauta 🚀 
+╰─────╯
+"
 
-read -p "$(tput setaf 3)Name Project: $(tput sgr 0)" PROJECT_NAME
+read -p "$(tput bold)$(tput setab 3)$(tput setaf 0) Name Project:$(tput sgr 0) " PROJECT_NAME
 
-command git clone https://github.com/spectrasonic117/astro-template.git $PWD/$PROJECT_NAME
+command git clone https://github.com/spectrasonic117/astro-template.git -q $PWD/$PROJECT_NAME
 cd $PWD/$PROJECT_NAME
 
 printf '
@@ -32,34 +35,58 @@ printf '
     "eslint": "latest",
     "eslint-plugin-astro": "latest",
     "eslint-plugin-jsx-a11y": "latest",
+    "normalizecss": "latest",
     "prettier": "latest",
     "prettier-config-standard": "latest",
-    "prettier-plugin-astro": "latest"
+    "prettier-plugin-astro": "latest",
+    "sass": "latest"
   }
 }' > package.json
 
-echo "$(tput setaf 3)Package.json added $(tput sgr 0)"
-echo ""
-echo "$(tput setaf 3)Installing Dependencies... $(tput sgr 0)"
+echo "
+╭─────╮  Houston:
+│ ♡ $(tput setaf 2)◡ $(tput sgr 0)♡  $(tput setaf 2)package.json creado! $(tput sgr 0)✅
+╰─────╯
+"
+sleep 1
 
 command pnpm i
 
+echo "
+╭─────╮  Houston:
+│ ᗒ $(tput setaf 2)ᗜ $(tput sgr 0)ᗕ  $(tput setaf 2)Dependencias Instaladas! $(tput sgr 0)📦
+╰─────╯
+"
+sleep 1
 
 if [ -d .git ]; then
   echo "$(tput setaf 3)Removing .git directory... $(tput sgr 0)"
-  command rm -rfv .git/
+  command rm -rf .git/
+  echo "
+╭─────╮  Houston:
+│ ¬ $(tput setaf 1)⌒ $(tput sgr 0)¬  $(tput setaf 1)Antiguo .git Removido! $(tput sgr 0)❌
+╰─────╯
+"
+sleep 1
 fi
 
-echo "$(tput setaf 3)Creating git Repository... $(tput sgr 0)"
-command git init
-
-command rm -rf  ./install.sh
-
-echo ""
-echo "$(tput setaf 2)Prettier & ESLint Astro plugins installed $(tput sgr 0)"
-
-
+command git init -q
 echo "
 ╭─────╮  Houston:
-│ ◠ $(tput setaf 2)◡ $(tput sgr 0)◠  Buena suerte, Astronauta! 🚀 
-╰─────╯"
+│ ● $(tput setaf 2)◡ $(tput sgr 0)●  $(tput setaf 2)Repositorio Creado $(tput sgr 0)📦 
+╰─────╯
+"
+sleep 1
+
+command rm -rf ./install.sh
+
+sleep 1
+
+# PROJECT_NAME=TESTING
+echo "
+
+╭─────╮  Houston:
+│ ◠ $(tput setaf 2)◡ $(tput sgr 0)◠  $(tput setaf 2)Proyecto $(tput setab 2)$(tput setaf 0) $PROJECT_NAME $(tput sgr 0) $(tput setaf 2)Creado$(tput sgr 0) ✅
+╰─────╯  Buena suerte, Astronauta 🚀
+
+"
