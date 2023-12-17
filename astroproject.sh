@@ -35,7 +35,7 @@ printf '
     "eslint": "latest",
     "eslint-plugin-astro": "latest",
     "eslint-plugin-jsx-a11y": "latest",
-    "normalizecss": "latest",
+    "normalize.css": "latest",
     "prettier": "latest",
     "prettier-config-standard": "latest",
     "prettier-plugin-astro": "latest",
