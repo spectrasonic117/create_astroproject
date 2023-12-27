@@ -7,21 +7,23 @@ OPTDIR ?= /opt
 
 BINDIR = $(PREFIX)/bin
 DATDIR = $(OPTDIR)/astroproject
+BIN = mkastro
+
 # all: build install
 
 # sudo make install
 install:
 	mkdir -p $(DATDIR)
 
-	cp ./astroproject $(BINDIR)/astroproject
-	cp ./astroproject.sh $(DATDIR)/astroproject.sh
+	cp ./$(BIN) $(BINDIR)/$(BIN)
+	cp ./$(BIN).sh $(DATDIR)/$(BIN).sh
 
-	chmod +x $(BINDIR)/astroproject
-	chmod +x $(DATDIR)/astroproject.sh
+	chmod +x $(BINDIR)/$(BIN)
+	chmod +x $(DATDIR)/$(BIN).sh
 
 	echo "Done"
 
 # sudo make uninstall
 uninstall:
-	rm $(BINDIR)/astroproject
+	rm $(BINDIR)/$(BIN)
 	rm -rf $(DATDIR)
