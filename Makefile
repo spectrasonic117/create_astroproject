@@ -6,7 +6,7 @@ PREFIX ?= /usr/local
 OPTDIR ?= /opt
 
 BINDIR = $(PREFIX)/bin
-DATDIR = $(OPTDIR)/astroproject
+DATDIR = $(OPTDIR)/mkastro
 BIN = mkastro
 
 # all: build install

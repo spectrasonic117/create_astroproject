@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-EXEC_PATH="/opt/astroproject"
-exec ${EXEC_PATH}/astroproject.sh
+EXEC_PATH="/opt/mkastro"
+exec ${EXEC_PATH}/mkastro.sh
