@@ -19,8 +19,8 @@ printf '
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
+    "dev": "astro dev --open",
+    "start": "astro dev --open",
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro"
