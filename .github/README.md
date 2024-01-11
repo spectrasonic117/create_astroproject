@@ -14,11 +14,52 @@ sudo make install
 **To init a Astro project just type:**
 
 ```sh
-mkastro
+mkastro ${ProjectName}
 ```
 
-> Works in macOS and Linux
+**If you want use tailwind with svelte in the project using:**
+```sh 
+mkastro $ProjectName} tailwind svelte
+```
 
-I used the Houtson Astro mascot, because I think it's cute.
+## CSS Framework available
+- tailwind
+
+## JS Framework available
+- Preact
+- React
+- Svelte
+- Vue
+
+> Works in macOS and Linux (May work in WSL)
+
+
+### TO DO (For the Near Future)
+
+- Add CSS Frameworks
+    - Bootstrap
+    - Bulma
+    - Materialize
+
+- Add JS more Frameworks
+    - Alpine JS 
+    - Lit 
+    - SolidJS
+
+### Long Future
+
+- Add SSR Integrators
+    - Cloudflare
+    - Netlify
+    - Node
+    - Vercel
+
+- Add Other Integrations
+    - Markdoc
+    - MDX
+    - PartyTown
+    - Sitemap
+
+> I used the **Houston** Astro mascot, because I think it's cute :).
 
 <p align='right'><img src='https://raw.githubusercontent.com/spectrasonic117/spectrasonic117/main/assets/dev.svg' width='25'> with <img src='https://raw.githubusercontent.com/spectrasonic117/spectrasonic117/main/assets/heart.svg' width='20'> by <strong>Spectrasonic</strong></p>
