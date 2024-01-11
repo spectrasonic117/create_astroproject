@@ -1,6 +1,15 @@
 #!/usr/bin/env bash
 
-# Scirpt para crear un proyecto de astro basado en los proyectos que yo utilizo ^^
+# ███╗   ███╗██╗  ██╗     █████╗ ███████╗████████╗██████╗  ██████╗
+# ████╗ ████║██║ ██╔╝    ██╔══██╗██╔════╝╚══██╔══╝██╔══██╗██╔═══██╗
+# ██╔████╔██║█████╔╝     ███████║███████╗   ██║   ██████╔╝██║   ██║
+# ██║╚██╔╝██║██╔═██╗     ██╔══██║╚════██║   ██║   ██╔══██╗██║   ██║
+# ██║ ╚═╝ ██║██║  ██╗    ██║  ██║███████║   ██║   ██║  ██║╚██████╔╝
+# ╚═╝     ╚═╝╚═╝  ╚═╝    ╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝
+
+
+# Script by Spectrasonic
+
 
 # === Colors ===
 BLACK="$(tput setaf 0)"
@@ -26,6 +35,10 @@ BMAGENTA="$(tput setab 5)"
 BCYAN="$(tput setab 6)"
 BWHITE="$(tput setab 7)"
 BRESET="$(tput sgr 0)"
+
+
+SVELTE="$(tput setaf 202)"
+VUE="$(tput setaf 85)"
 
 function select_option {
 
@@ -78,13 +91,13 @@ function select_option {
 	return $selected
 }
 
-# function tail_install {
-# 	echo "
-# ╭─────╮  Houston:
-# │ ● ${CYAN}ᗜ ${RESET}●  Instalando ${CYAN}Tailwind CSS for ${YELLOW}${PKGMANAGER} ${RESET}🚀 
-# ╰─────╯
-# "
-# }
+function tail_install {
+	echo "
+╭─────╮  Houston:
+│ ● ${CYAN}ᗜ ${RESET}●  Instalando ${CYAN}Tailwind CSS for ${YELLOW}${PKGMANAGER} ${RESET}🚀 
+╰─────╯
+"
+}
 
 echo "
 ╭─────╮  Houston:
@@ -105,7 +118,7 @@ cd $PWD/$PROJECT_NAME
 printf '{
   "name": "'${PROJECT_NAME}'",
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "scripts": {
 	"dev": "astro dev --open",
 	"start": "astro dev --open",
@@ -188,12 +201,15 @@ case $2 in
 	case $PKGMANAGER in
 	  "bun")
 	  command bun astro add tailwind
+    echo "${CYAN}TailwindCSS ${GREEN}Instalado"
 		;;
 	  "npm")
 	  command npx astro add tailwind
+    echo "${CYAN}TailwindCSS ${GREEN}Instalado"
 		;;
 	  "pnpm")
 	  command pnpx astro add tailwind
+    echo "${CYAN}TailwindCSS ${GREEN}Instalado"
 		;;
 	  *)
 		echo "${BLUE}${BOLD}use: ${GREEN}${PKGMANAGER} astro add tailwind ${BLUE}to install Framework"
@@ -207,12 +223,81 @@ case $2 in
   	continue ;;
 esac
 
+case $3 in
+  "preact")
+    case $PKGMANAGER in 
+      "bun")
+        command bun astro add preact ;;
+        echo "${CYAN}Preact ${GREEN}Instalado${RESET}"
+      "npm")
+        command npm astro add preact ;;
+        echo "${CYAN}Preact ${GREEN}Instalado${RESET}"
+      "pnpm")
+        command pnpm astroadd preact ;;
+        echo "${CYAN}Preact ${GREEN}Instalado${RESET}"
+      *)
+        continue
+    esac
+    ;;
+
+  "react")
+    case $PKGMANAGER in 
+      "bun")
+        command bun astro add react ;;
+        echo "${BLUE}React ${GREEN}Instalado${RESET}"
+      "npm")
+        command npm astro add react ;;
+        echo "${BLUE}React ${GREEN}Instalado${RESET}"
+      "pnpm")
+        command pnpm astroadd react ;;
+        echo "${BLUE}React ${GREEN}Instalado${RESET}"
+      *)
+        continue
+    esac
+    ;;
+
+  "svelte")
+    case $PKGMANAGER in 
+      "bun")
+        command bun astro add svelte;;
+        echo "${SVELTE}Svelte ${GREEN}Instalado${RESET}"
+      "npm")
+        command npm astro add svelte;;
+        echo "${SVELTE}Svelte ${GREEN}Instalado${RESET}"
+      "pnpm")
+        command pnpm astroadd svelte;;
+        echo "${SVELTE}Svelte ${GREEN}Instalado${RESET}"
+      *)
+        continue
+    esac 
+    ;;
+
+  "vue")
+    case $PKGMANAGER in 
+      "bun")
+        command bun astro add vue;;
+        echo "${VUE}Vue ${GREEN}Instalado${RESET}"
+      "npm")
+        command npm astro add vue;
+        echo "${VUE}Vue ${GREEN}Instalado${RESET}"
+      "pnpm")
+        command pnpm astroadd vue;
+        echo "${VUE}Vue ${GREEN}Instalado${RESET}"
+      *)
+        continue
+    esac
+    ;;
+
+  *)
+    echo "${BOLD}${RED}JS Framework no set ${RESET}"
+esac
+
 
 # PROJECT_NAME=TESTING
 echo "
 
 ╭─────╮  Houston:
 │ ◠ ${GREEN}◡ ${RESET}◠  ${GREEN}Proyecto ${BGREEN}${BLACK} ${PROJECT_NAME} ${RESET} ${GREEN}Creado${GREEN}${RESET} ✅
-╰─────╯  ${BLUE}Buena suerte, Astronauta 🚀
+╰─────╯  ${BLUE}Buena suerte, Astronauta${RESET} 🚀
 
 "
