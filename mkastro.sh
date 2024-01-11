@@ -159,11 +159,11 @@ echo "
 sleep 1
 
 if [ -d .git ]; then
-  echo "${YELLOW}Removing .git directory... ${RESET}"
+#   echo "${YELLOW}Removing .git directory... ${RESET}"
   command rm -rf .git/
   echo "
 ╭─────╮  Houston:
-│ ¬ ${RED}⌒ ${RESET}¬  ${red}Antiguo .git Removido! ${RESET}❌
+│ ● ${RED}⌒ ${RESET}●  ${RED}Antiguo .git Removido! ${RESET}❌
 ╰─────╯
 "
 sleep 1
