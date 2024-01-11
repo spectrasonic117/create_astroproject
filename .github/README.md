@@ -1,29 +1,31 @@
 # Astro Template create
 
-This script installs a binary that is used to create a project in astro (as I use it)
+This script install a binary that is used to create a project in astro (as I use it)
 
 ![terminal Screenshot](terminal.png)
 
-**To install the bin just type:**
+## **To install the binary just type:**
 
 ```sh
 cd mkastro
 sudo make install
 ```
 
-**To init a Astro project just type:**
+### **To init a Astro project just type:**
 
 ```sh
-mkastro ${ProjectName}
+mkastro {ProjectName}
 ```
 
-**If you want use tailwind with svelte in the project using:**
+### **If you want use tailwind with svelte in the project using:**
 ```sh 
-mkastro $ProjectName} tailwind svelte
+mkastro {ProjectName} tailwind svelte
 ```
+
+---
 
 ## CSS Framework available
-- tailwind
+- Tailwind
 
 ## JS Framework available
 - Preact
