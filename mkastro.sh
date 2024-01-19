@@ -235,7 +235,7 @@ case $3 in
         echo "${CYAN}Preact ${GREEN}Instalado${RESET}"
         ;;
       "pnpm")
-        command pnpm astroadd preact
+        command pnpm astro add preact
         echo "${CYAN}Preact ${GREEN}Instalado${RESET}"
         ;;
       *)
@@ -254,7 +254,7 @@ case $3 in
         echo "${BLUE}React ${GREEN}Instalado${RESET}"
         ;;
       "pnpm")
-        command pnpm astroadd react
+        command pnpm astro add react
         echo "${BLUE}React ${GREEN}Instalado${RESET}"
         ;;
       *)
@@ -273,7 +273,7 @@ case $3 in
         echo "${SVELTE}Svelte ${GREEN}Instalado${RESET}"
         ;;
       "pnpm")
-        command pnpm astroadd svelte
+        command pnpm astro add svelte
         echo "${SVELTE}Svelte ${GREEN}Instalado${RESET}"
         ;;
       *)
