@@ -10,7 +10,6 @@
 
 # Script by Spectrasonic
 
-
 # === Colors ===
 BLACK="$(tput setaf 0)"
 RED="$(tput setaf 1)"
@@ -93,6 +92,7 @@ function select_option {
 
 function tail_install {
 	echo "
+  
 ╭─────╮  Houston:
 │ ● ${CYAN}ᗜ ${RESET}●  Instalando ${CYAN}Tailwind CSS for ${YELLOW}${PKGMANAGER} ${RESET}🚀 
 ╰─────╯
@@ -106,12 +106,12 @@ echo "
 "
 
 if [ -z "$1" ]; then
-  read -p "${BOLD}${BMAGENTA}${BLACK} Name Project:${RESET} " PROJECT_NAME
+  read -p "${BCYAN}${BLACK} Name Project:${RESET} " PROJECT_NAME
 else
   PROJECT_NAME="$1"
 fi
 
-command git clone https://github.com/spectrasonic117/astro-template.git -q $PWD/$PROJECT_NAME
+git clone https://github.com/spectrasonic117/astro-template.git -q $PWD/$PROJECT_NAME
 
 cd $PWD/$PROJECT_NAME
 
@@ -295,7 +295,6 @@ esac
 
 # PROJECT_NAME=TESTING
 echo "
-
 ╭─────╮  Houston:
 │ ◠ ${GREEN}◡ ${RESET}◠  ${GREEN}Proyecto ${BGREEN}${BLACK} ${PROJECT_NAME} ${RESET} ${GREEN}Creado${GREEN}${RESET} ✅
 ╰─────╯  ${BLUE}Buena suerte, Astronauta${RESET} 🚀

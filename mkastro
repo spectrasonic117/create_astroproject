@@ -10,4 +10,4 @@
 # Binary by Spectrasonic
 
 EXEC_PATH="/opt/mkastro"
-exec ${EXEC_PATH}/mkastro.sh "$@
+exec ${EXEC_PATH}/mkastro.sh $@
