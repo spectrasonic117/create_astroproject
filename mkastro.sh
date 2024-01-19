@@ -227,14 +227,17 @@ case $3 in
   "preact")
     case $PKGMANAGER in 
       "bun")
-        command bun astro add preact ;;
+        command bun astro add preact
         echo "${CYAN}Preact ${GREEN}Instalado${RESET}"
+        ;;
       "npm")
-        command npm astro add preact ;;
+        command npm astro add preact
         echo "${CYAN}Preact ${GREEN}Instalado${RESET}"
+        ;;
       "pnpm")
-        command pnpm astroadd preact ;;
+        command pnpm astroadd preact
         echo "${CYAN}Preact ${GREEN}Instalado${RESET}"
+        ;;
       *)
         continue
     esac
@@ -243,14 +246,17 @@ case $3 in
   "react")
     case $PKGMANAGER in 
       "bun")
-        command bun astro add react ;;
+        command bun astro add react
         echo "${BLUE}React ${GREEN}Instalado${RESET}"
+        ;;
       "npm")
-        command npm astro add react ;;
+        command npm astro add react
         echo "${BLUE}React ${GREEN}Instalado${RESET}"
+        ;;
       "pnpm")
-        command pnpm astroadd react ;;
+        command pnpm astroadd react
         echo "${BLUE}React ${GREEN}Instalado${RESET}"
+        ;;
       *)
         continue
     esac
@@ -259,14 +265,17 @@ case $3 in
   "svelte")
     case $PKGMANAGER in 
       "bun")
-        command bun astro add svelte;;
+        command bun astro add svelte
         echo "${SVELTE}Svelte ${GREEN}Instalado${RESET}"
+        ;;
       "npm")
-        command npm astro add svelte;;
+        command npm astro add svelte
         echo "${SVELTE}Svelte ${GREEN}Instalado${RESET}"
+        ;;
       "pnpm")
-        command pnpm astroadd svelte;;
+        command pnpm astroadd svelte
         echo "${SVELTE}Svelte ${GREEN}Instalado${RESET}"
+        ;;
       *)
         continue
     esac 
@@ -275,14 +284,17 @@ case $3 in
   "vue")
     case $PKGMANAGER in 
       "bun")
-        command bun astro add vue;;
+        command bun astro add vue
         echo "${VUE}Vue ${GREEN}Instalado${RESET}"
+        ;;
       "npm")
-        command npm astro add vue;
+        command npm astro add vue
         echo "${VUE}Vue ${GREEN}Instalado${RESET}"
+        ;;
       "pnpm")
-        command pnpm astroadd vue;
+        command pnpm astroadd vue
         echo "${VUE}Vue ${GREEN}Instalado${RESET}"
+        ;;
       *)
         continue
     esac
