@@ -118,7 +118,7 @@ cd $PWD/$PROJECT_NAME
 printf '{
   "name": "'${PROJECT_NAME}'",
   "type": "module",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
 	"dev": "astro dev --open",
 	"start": "astro dev --open",
@@ -136,19 +136,13 @@ printf '{
 	"eslint": "latest",
 	"eslint-plugin-astro": "latest",
 	"eslint-plugin-jsx-a11y": "latest",
-	"normalize.css": "latest",
+	"css.normalizer": "latest",
 	"prettier": "latest",
 	"prettier-config-standard": "latest",
 	"prettier-plugin-astro": "latest",
 	"sass": "latest"
   }
 }' > package.json
-
-# echo "
-# ╭─────╮  Houston:
-# │ ♡ ${GREEN}◡ ${RESET}♡  ${GREEN}package.json creado! ${GREEN}✅
-# ╰─────╯
-# "
 sleep 1
 
 
@@ -188,10 +182,6 @@ echo "
 │ ● ${GREEN}◡ ${RESET}●  ${GREEN}Repositorio Creado ${RESET}📦 
 ╰─────╯
 "
-sleep 1
-
-command rm -rf ./install.sh
-
 sleep 1
 
 #  ----- Install Tailwind CSS -----
