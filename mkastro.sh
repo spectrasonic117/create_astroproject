@@ -153,7 +153,7 @@ select_option "${options[@]}"
 choice=$?
 PKGMANAGER="${options[$choice]}"
 
-command ${PKGMANAGER} install
+# command ${PKGMANAGER} install
 
 echo "${RESET}╭─────╮  Houston:
 │ ᗒ ${GREEN}ᗜ ${RESET}ᗕ  ${GREEN}Dependencias Instaladas! ${RESET}📦
@@ -169,10 +169,12 @@ command git init -q
 #  ----- Install Tailwind CSS -----
 
 if [ -z "$2" ]; then
-  echo "${RESET}╭─────╮  Houston:
+  echo "${RESET}
+╭─────╮  Houston:
 │ ● ${GREEN}◡ ${RESET}●  ${GREEN}Selecciona Framework ${RESET}
 ╰─────╯  ${GREEN}de CSS 📦 ${RESET} ${CYAN}
 "
+
   options=("vanilla" "tailwind" "unocss")
   select_option "${options[@]}"
   choice=$?
@@ -181,21 +183,24 @@ if [ -z "$2" ]; then
   if [ "${CSSFRAMEWORK}" == "vanilla" ]; then
     echo ""
   else
-    command ${PKGMANAGER} install ${CSSFRAMEWORK}
+    command $PKGMANAGER install $CSSFRAMEWORK
+    echo "${CYAN}${CSSFRAMEWORK} ${GREEN}Instalado${RESET}"
+  fi
 
 else
   case $2 in
     "tailwind")
-      command ${PKGMANAGER} install tailwindcss
+      command $PKGMANAGER install tailwindcss
       ;;
     "unocss")
-      command ${PKGMANAGER} install unocss
+      command $PKGMANAGER install unocss
       ;;
     *)
       echo "${BRED}${BLACK}Opcion no valida" 
       echo "${BLUE}${BOLD}use: ${GREEN}${PKGMANAGER} astro add tailwind ${BLUE}to install Framework"
       continue 
       ;;
+  esac
 fi
 
 #  ----- Install JavaScript Framework -----
