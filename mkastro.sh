@@ -153,7 +153,7 @@ select_option "${options[@]}"
 choice=$?
 PKGMANAGER="${options[$choice]}"
 
-# command ${PKGMANAGER} install
+command ${PKGMANAGER} install
 
 echo "${RESET}╭─────╮  Houston:
 │ ᗒ ${GREEN}ᗜ ${RESET}ᗕ  ${GREEN}Dependencias Instaladas! ${RESET}📦
