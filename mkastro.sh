@@ -39,6 +39,14 @@ BRESET="$(tput sgr 0)"
 SVELTE="$(tput setaf 202)"
 VUE="$(tput setaf 85)"
 
+# function tail_install {
+# 	echo "
+# ╭─────╮  Houston:
+# │ ● ${CYAN}ᗜ ${RESET}●  Instalando ${CYAN}Tailwind CSS for ${YELLOW}${PKGMANAGER} ${RESET}🚀 
+# ╰─────╯
+# "
+# }
+
 function select_option {
 
 	ESC=$( printf "\033")
@@ -90,15 +98,6 @@ function select_option {
 	return $selected
 }
 
-function tail_install {
-	echo "
-  
-╭─────╮  Houston:
-│ ● ${CYAN}ᗜ ${RESET}●  Instalando ${CYAN}Tailwind CSS for ${YELLOW}${PKGMANAGER} ${RESET}🚀 
-╰─────╯
-"
-}
-
 echo "
 ╭─────╮  Houston:
 │ ● ${GREEN}◡ ${RESET}●  Bienvenido, Astronauta 🚀 
@@ -107,6 +106,13 @@ echo "
 
 if [ -z "$1" ]; then
   read -p "${BCYAN}${BLACK} Name Project:${RESET} " PROJECT_NAME
+elif [ -d "$1" ]; then
+  echo "${RED}El directorio ya existe"
+  exit 1
+elif [ "$1" == "--help" ] || [ "$1" == "-h" ]; then
+  echo "${RED}Usage:"
+  echo "${GREEN}mkastro ${BLUE}<project-name> <tailwind> <preact|react|svelte|vue>${RESET}"
+  exit 1
 else
   PROJECT_NAME="$1"
 fi
@@ -158,142 +164,102 @@ PKGMANAGER="${options[$choice]}"
 
 command ${PKGMANAGER} install
 
-echo "
+echo "${RESET}
 ╭─────╮  Houston:
 │ ᗒ ${GREEN}ᗜ ${RESET}ᗕ  ${GREEN}Dependencias Instaladas! ${RESET}📦
-╰─────╯
-"
+╰─────╯${RESET}"
 sleep 1
 
 if [ -d .git ]; then
-#   echo "${YELLOW}Removing .git directory... ${RESET}"
   command rm -rf .git/
-  echo "
-╭─────╮  Houston:
-│ ● ${RED}⌒ ${RESET}●  ${RED}Antiguo .git Removido! ${RESET}❌
-╰─────╯
-"
-sleep 1
 fi
 
 command git init -q
-echo "
-╭─────╮  Houston:
-│ ● ${GREEN}◡ ${RESET}●  ${GREEN}Repositorio Creado ${RESET}📦 
-╰─────╯
-"
-sleep 1
 
 #  ----- Install Tailwind CSS -----
 
-case $2 in
-  "tailwind")
-	case $PKGMANAGER in
-	  "bun")
-	  command bun astro add tailwind
-    echo "${CYAN}TailwindCSS ${GREEN}Instalado"
-		;;
-	  "npm")
-	  command npx astro add tailwind
-    echo "${CYAN}TailwindCSS ${GREEN}Instalado"
-		;;
-	  "pnpm")
-	  command pnpx astro add tailwind
-    echo "${CYAN}TailwindCSS ${GREEN}Instalado"
-		;;
-	  *)
-		echo "${BLUE}${BOLD}use: ${GREEN}${PKGMANAGER} astro add tailwind ${BLUE}to install Framework"
-		continue
-	esac
-	;;
+if [ -z "$2" ]; then
+  echo "${RESET}
+╭─────╮  Houston:
+│ ● ${GREEN}◡ ${RESET}●  ${GREEN}Selecciona Framework ${RESET}
+╰─────╯  ${GREEN}de CSS 📦 ${RESET} ${CYAN}
+"
+  options=("vanilla" "tailwind" "unocss")
+  select_option "${options[@]}"
+  choice=$?
+  CSSFRAMEWORK="${options[$choice]}"
 
-  *)
-  	echo "${BRED}${BLACK}Opcion no valida" 
-	echo "${BLUE}${BOLD}use: ${GREEN}${PKGMANAGER} astro add tailwind ${BLUE}to install Framework"
-  	continue ;;
-esac
+  if [ "$CSSFRAMEWORK" == "vanilla" ]; then
+    echo "${RESET}"
+  else
+    command ${PKGMANAGER} astro add ${CSSFRAMEWORK}
+    echo "${CYAN}${CSSFRAMEWORK} ${GREEN}Instalado${RESET}"
+  fi
 
-case $3 in
-  "preact")
-    case $PKGMANAGER in 
-      "bun")
-        command bun astro add preact
-        echo "${CYAN}Preact ${GREEN}Instalado${RESET}"
-        ;;
-      "npm")
-        command npm astro add preact
-        echo "${CYAN}Preact ${GREEN}Instalado${RESET}"
-        ;;
-      "pnpm")
-        command pnpm astro add preact
-        echo "${CYAN}Preact ${GREEN}Instalado${RESET}"
-        ;;
-      *)
-        continue
-    esac
+else
+  case $2 in
+    "tailwind")
+      command ${PKGMANAGER} install tailwindcss
+      echo "╭─────╮  Houston:
+  │ ● ${CYAN}ᗜ ${RESET}●  Instalando ${CYAN}Tailwind CSS for ${YELLOW}${PKGMANAGER} ${RESET}🚀 
+  ╰─────╯"
+      continue
     ;;
 
-  "react")
-    case $PKGMANAGER in 
-      "bun")
-        command bun astro add react
-        echo "${BLUE}React ${GREEN}Instalado${RESET}"
-        ;;
-      "npm")
-        command npm astro add react
-        echo "${BLUE}React ${GREEN}Instalado${RESET}"
-        ;;
-      "pnpm")
-        command pnpm astro add react
-        echo "${BLUE}React ${GREEN}Instalado${RESET}"
-        ;;
-      *)
-        continue
-    esac
-    ;;
+    *)
+      echo "${BRED}${BLACK}Opcion no valida" 
+      echo "${BLUE}${BOLD}use: ${GREEN}${PKGMANAGER} astro add tailwind ${BLUE}to install Framework"
+      continue ;;
+  esac
+fi
 
-  "svelte")
-    case $PKGMANAGER in 
-      "bun")
-        command bun astro add svelte
-        echo "${SVELTE}Svelte ${GREEN}Instalado${RESET}"
-        ;;
-      "npm")
-        command npm astro add svelte
-        echo "${SVELTE}Svelte ${GREEN}Instalado${RESET}"
-        ;;
-      "pnpm")
-        command pnpm astro add svelte
-        echo "${SVELTE}Svelte ${GREEN}Instalado${RESET}"
-        ;;
-      *)
-        continue
-    esac 
-    ;;
 
-  "vue")
-    case $PKGMANAGER in 
-      "bun")
-        command bun astro add vue
-        echo "${VUE}Vue ${GREEN}Instalado${RESET}"
-        ;;
-      "npm")
-        command npm astro add vue
-        echo "${VUE}Vue ${GREEN}Instalado${RESET}"
-        ;;
-      "pnpm")
-        command pnpm astroadd vue
-        echo "${VUE}Vue ${GREEN}Instalado${RESET}"
-        ;;
-      *)
-        continue
-    esac
-    ;;
 
-  *)
-    echo "${BOLD}${RED}JS Framework no set ${RESET}"
-esac
+#  ----- Install JavaScript Framework -----
 
+if [ -z "$3" ]; then
+  echo "
+╭─────╮  Houston:
+│ ● ${GREEN}◡ ${RESET}●  ${GREEN}Selecciona Framework ${RESET}
+╰─────╯  ${GREEN}de Javascript 📦 ${RESET} ${CYAN}
+"
+  options=("vanilla" "preact" "react" "svelte" "vue")
+  select_option "${options[@]}"
+  choice=$?
+  JSFRAMEWORK="${options[$choice]}"
+
+  if [ "$JSFRAMEWORK" == "vanilla" ]; then
+    echo "${RESET}" 
+  else
+    command ${PKGMANAGER} astro add ${JSFRAMEWORK}
+    echo "${CYAN}${JSFRAMEWORK} ${GREEN}Instalado${RESET}"
+  fi
+
+else
+  case $3 in
+    "preact")
+      command ${PKGMANAGER} astro add preact
+      echo "${CYAN}Preact ${GREEN}Instalado${RESET}"
+      ;;
+
+    "react")
+      command ${PKGMANAGER} astro add react
+      echo "${CYAN}React ${GREEN}Instalado${RESET}"
+      ;;
+
+    "svelte")
+      command ${PKGMANAGER} astro add svelte
+      echo "${CYAN}Svelte ${GREEN}Instalado${RESET}"
+      ;;
+
+    "vue")
+      command ${PKGMANAGER} astro add vue
+      echo "${CYAN}Vue ${GREEN}Instalado${RESET}"
+      ;;
+    *)
+      echo "${BOLD}${RED}JS Framework no set ${RESET}"
+  esac
+fi
 
 # PROJECT_NAME=TESTING
 echo "
