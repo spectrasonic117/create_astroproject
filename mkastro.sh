@@ -39,14 +39,6 @@ BRESET="$(tput sgr 0)"
 SVELTE="$(tput setaf 202)"
 VUE="$(tput setaf 85)"
 
-# function tail_install {
-# 	echo "
-# ╭─────╮  Houston:
-# │ ● ${CYAN}ᗜ ${RESET}●  Instalando ${CYAN}Tailwind CSS for ${YELLOW}${PKGMANAGER} ${RESET}🚀 
-# ╰─────╯
-# "
-# }
-
 function select_option {
 
 	ESC=$( printf "\033")
@@ -111,7 +103,7 @@ elif [ -d "$1" ]; then
   exit 1
 elif [ "$1" == "--help" ] || [ "$1" == "-h" ]; then
   echo "${RED}Usage:"
-  echo "${GREEN}mkastro ${BLUE}<project-name> <tailwind> <preact|react|svelte|vue>${RESET}"
+  echo "${GREEN}mkastro ${BLUE}<project-name> <tailwind|unocss> <preact|react|svelte|vue>${RESET}"
   exit 1
 else
   PROJECT_NAME="$1"
@@ -152,8 +144,7 @@ printf '{
 sleep 1
 
 
-echo "
-╭─────╮  Houston:
+echo "╭─────╮  Houston:
 │ ● ${GREEN}◡ ${RESET}●  ${GREEN}Selecciona gestor ${RESET}
 ╰─────╯  ${GREEN}de paquetes 📦 ${RESET} ${CYAN}
 "
@@ -164,8 +155,7 @@ PKGMANAGER="${options[$choice]}"
 
 command ${PKGMANAGER} install
 
-echo "${RESET}
-╭─────╮  Houston:
+echo "${RESET}╭─────╮  Houston:
 │ ᗒ ${GREEN}ᗜ ${RESET}ᗕ  ${GREEN}Dependencias Instaladas! ${RESET}📦
 ╰─────╯${RESET}"
 sleep 1
@@ -179,8 +169,7 @@ command git init -q
 #  ----- Install Tailwind CSS -----
 
 if [ -z "$2" ]; then
-  echo "${RESET}
-╭─────╮  Houston:
+  echo "${RESET}╭─────╮  Houston:
 │ ● ${GREEN}◡ ${RESET}●  ${GREEN}Selecciona Framework ${RESET}
 ╰─────╯  ${GREEN}de CSS 📦 ${RESET} ${CYAN}
 "
@@ -189,36 +178,30 @@ if [ -z "$2" ]; then
   choice=$?
   CSSFRAMEWORK="${options[$choice]}"
 
-  if [ "$CSSFRAMEWORK" == "vanilla" ]; then
-    echo "${RESET}"
+  if [ "${CSSFRAMEWORK}" == "vanilla" ]; then
+    echo ""
   else
-    command ${PKGMANAGER} astro add ${CSSFRAMEWORK}
-    echo "${CYAN}${CSSFRAMEWORK} ${GREEN}Instalado${RESET}"
-  fi
+    command ${PKGMANAGER} install ${CSSFRAMEWORK}
 
 else
   case $2 in
     "tailwind")
       command ${PKGMANAGER} install tailwindcss
-      echo "╭─────╮  Houston:
-  │ ● ${CYAN}ᗜ ${RESET}●  Instalando ${CYAN}Tailwind CSS for ${YELLOW}${PKGMANAGER} ${RESET}🚀 
-  ╰─────╯"
-      continue
-    ;;
-
+      ;;
+    "unocss")
+      command ${PKGMANAGER} install unocss
+      ;;
     *)
       echo "${BRED}${BLACK}Opcion no valida" 
       echo "${BLUE}${BOLD}use: ${GREEN}${PKGMANAGER} astro add tailwind ${BLUE}to install Framework"
-      continue ;;
-  esac
+      continue 
+      ;;
 fi
-
-
 
 #  ----- Install JavaScript Framework -----
 
 if [ -z "$3" ]; then
-  echo "
+  echo "${RESET}
 ╭─────╮  Houston:
 │ ● ${GREEN}◡ ${RESET}●  ${GREEN}Selecciona Framework ${RESET}
 ╰─────╯  ${GREEN}de Javascript 📦 ${RESET} ${CYAN}
@@ -229,7 +212,7 @@ if [ -z "$3" ]; then
   JSFRAMEWORK="${options[$choice]}"
 
   if [ "$JSFRAMEWORK" == "vanilla" ]; then
-    echo "${RESET}" 
+    echo "" 
   else
     command ${PKGMANAGER} astro add ${JSFRAMEWORK}
     echo "${CYAN}${JSFRAMEWORK} ${GREEN}Instalado${RESET}"
@@ -262,7 +245,7 @@ else
 fi
 
 # PROJECT_NAME=TESTING
-echo "
+echo "${RESET}
 ╭─────╮  Houston:
 │ ◠ ${GREEN}◡ ${RESET}◠  ${GREEN}Proyecto ${BGREEN}${BLACK} ${PROJECT_NAME} ${RESET} ${GREEN}Creado${GREEN}${RESET} ✅
 ╰─────╯  ${BLUE}Buena suerte, Astronauta${RESET} 🚀
