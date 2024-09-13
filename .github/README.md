@@ -9,58 +9,65 @@ This script install a binary that is used to create a project in astro (as I use
 ```sh
 cd mkastro
 sudo make install
+# Works in macOS & linux
+#
 ```
 
 ### **To init a Astro project just type:**
 
 ```sh
-mkastro {ProjectName}
+mkastro {ProjectName} {CSSFramework} {JSFramework}
 ```
 
 ### **If you want use tailwind with svelte in the project using:**
-```sh 
+
+```sh
 mkastro {ProjectName} tailwind svelte
 ```
 
 ---
 
 ## CSS Framework available
-- Tailwind
+
+-   Tailwind
+-   UnoCSS
 
 ## JS Framework available
-- Preact
-- React
-- Svelte
-- Vue
 
-> Works in macOS and Linux (May work in WSL)
+-   React
+-   Svelte
+-   Vue
+-   Preact
 
+> Works in macOS and Linux (May work windows with WSL)
 
-### TO DO (For the Near Future)
+### TO DO (For the Future)
 
-- Add CSS Frameworks
-    - Bootstrap
-    - Bulma
-    - Materialize
+-   Add CSS Frameworks
 
-- Add JS more Frameworks
-    - Alpine JS 
-    - Lit 
-    - SolidJS
+    -   Bootstrap
+    -   Bulma
+    -   Materialize
+
+-   Add JS more Frameworks
+    -   Alpine JS
+    -   Lit
+    -   SolidJS
 
 ### Long Future
 
-- Add SSR Integrators
-    - Cloudflare
-    - Netlify
-    - Node
-    - Vercel
+-   Add SSR Integrators
 
-- Add Other Integrations
-    - Markdoc
-    - MDX
-    - PartyTown
-    - Sitemap
+    -   Cloudflare
+    -   Netlify
+    -   Node
+    -   Vercel
+
+-   Add Other Integrations
+    -   Markdoc
+    -   MDX
+    -   PartyTown
+    -   Sitemap
 
 > I used the **Houston** Astro mascot, because I think it's cute :).
 

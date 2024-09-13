@@ -36,6 +36,8 @@ BRESET="$(tput sgr 0)"
 SVELTE="$(tput setaf 202)"
 VUE="$(tput setaf 85)"
 
+DEPENDENCIES="@astrojs/check astro typescript eslint eslint-plugin-astro eslint-plugin-jsx-a11y @typescript-eslint/parser prettier prettier-config-standard prettier-plugin-astro css.normalizer sass"
+
 function select_option {
 
 	ESC=$( printf "\033")
@@ -90,7 +92,7 @@ function select_option {
 echo "
 ╭─────╮  Houston:
 │ ● ${GREEN}◡ ${RESET}●  Bienvenido, Astronauta 🚀 
-╰─────╯
+╰─────╯  ${CYAN}${USER}${RESET} ${GREEN}Listo para crear un nuevo proyecto${RESET} 🛠️
 "
 
 if [ -z "$1" ]; then
@@ -107,7 +109,6 @@ else
 fi
 
 git clone https://github.com/spectrasonic117/astro-template.git -q $PWD/$PROJECT_NAME
-
 cd $PWD/$PROJECT_NAME
 
 printf '{
@@ -120,22 +121,6 @@ printf '{
 	"build": "astro check && astro build",
 	"preview": "astro preview",
 	"astro": "astro"
-  },
-  "dependencies": {
-	"@astrojs/check": "latest",
-	"astro": "latest",
-	"typescript": "latest"
-  },
-	"devDependencies": {
-	"@typescript-eslint/parser": "latest",
-	"eslint": "latest",
-	"eslint-plugin-astro": "latest",
-	"eslint-plugin-jsx-a11y": "latest",
-	"css.normalizer": "latest",
-	"prettier": "latest",
-	"prettier-config-standard": "latest",
-	"prettier-plugin-astro": "latest",
-	"sass": "latest"
   }
 }' > package.json
 sleep 1
@@ -145,12 +130,24 @@ echo "╭─────╮  Houston:
 │ ● ${GREEN}◡ ${RESET}●  ${GREEN}Selecciona gestor ${RESET}
 ╰─────╯  ${GREEN}de paquetes 📦 ${RESET} ${CYAN}
 "
-options=("bun" "npm" "pnpm")
+options=("pnpm" "npm" "bun")
 select_option "${options[@]}"
 choice=$?
 PKGMANAGER="${options[$choice]}"
 
-command ${PKGMANAGER} install
+case $PKGMANAGER in
+  "pnpm")
+	command pnpm i -D ${DEPENDENCIES}
+	;;
+  "npm")
+	command npm i -D ${DEPENDENCIES}
+	;;
+  "bun")
+	command bun add ${DEPENDENCIES}
+	;;
+esac
+
+# command ${PKGMANAGER} i -D ${DEPENDENCIES}
 
 echo "${RESET}╭─────╮  Houston:
 │ ᗒ ${GREEN}ᗜ ${RESET}ᗕ  ${GREEN}Dependencias Instaladas! ${RESET}📦
@@ -250,6 +247,6 @@ fi
 echo "${RESET}
 ╭─────╮  Houston:
 │ ◠ ${GREEN}◡ ${RESET}◠  ${GREEN}Proyecto ${BGREEN}${BLACK} ${PROJECT_NAME} ${RESET} ${GREEN}Creado${GREEN}${RESET} ✅
-╰─────╯  ${BLUE}Buena suerte, Astronauta${RESET} 🚀
+╰─────╯  ${BLUE}Buena Suerte, Astronauta${RESET} 🚀
 
 "
