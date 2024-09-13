@@ -6,9 +6,7 @@
 # ██║╚██╔╝██║██╔═██╗     ██╔══██║╚════██║   ██║   ██╔══██╗██║   ██║
 # ██║ ╚═╝ ██║██║  ██╗    ██║  ██║███████║   ██║   ██║  ██║╚██████╔╝
 # ╚═╝     ╚═╝╚═╝  ╚═╝    ╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝
-
-
-# Script by Spectrasonic
+# Script developed by Spectrasonic
 
 # === Colors ===
 BLACK="$(tput setaf 0)"
@@ -34,7 +32,6 @@ BMAGENTA="$(tput setab 5)"
 BCYAN="$(tput setab 6)"
 BWHITE="$(tput setab 7)"
 BRESET="$(tput sgr 0)"
-
 
 SVELTE="$(tput setaf 202)"
 VUE="$(tput setaf 85)"
@@ -99,7 +96,7 @@ echo "
 if [ -z "$1" ]; then
   read -p "${BCYAN}${BLACK} Name Project:${RESET} " PROJECT_NAME
 elif [ -d "$1" ]; then
-  echo "${RED}El directorio ya existe"
+  echo "${RED}El proyecto ya existe."
   exit 1
 elif [ "$1" == "--help" ] || [ "$1" == "-h" ]; then
   echo "${RED}Usage:"
