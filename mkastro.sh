@@ -7,6 +7,7 @@
 # ██║ ╚═╝ ██║██║  ██╗    ██║  ██║███████║   ██║   ██║  ██║╚██████╔╝
 # ╚═╝     ╚═╝╚═╝  ╚═╝    ╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝
 # Script developed by Spectrasonic
+# This Script use biome as linter and formatter
 
 # === Colors ===
 BLACK="$(tput setaf 0)"
@@ -36,7 +37,7 @@ BRESET="$(tput sgr 0)"
 SVELTE="$(tput setaf 202)"
 VUE="$(tput setaf 85)"
 
-DEPENDENCIES="@astrojs/check astro typescript eslint eslint-plugin-astro eslint-plugin-jsx-a11y @typescript-eslint/parser prettier prettier-config-standard prettier-plugin-astro css.normalizer sass"
+DEPENDENCIES="@astrojs/check astro typescript css.normalizer sass @biomejs/biome"
 
 function select_option {
 
@@ -108,7 +109,7 @@ else
   PROJECT_NAME="$1"
 fi
 
-git clone https://github.com/spectrasonic117/astro-template.git -q $PWD/$PROJECT_NAME
+git clone -b astrobiome https://github.com/spectrasonic117/astro-template.git -q $PWD/$PROJECT_NAME
 cd $PWD/$PROJECT_NAME
 
 printf '{
@@ -120,7 +121,10 @@ printf '{
 	"start": "astro dev --open",
 	"build": "astro check && astro build",
 	"preview": "astro preview",
-	"astro": "astro"
+	"astro": "astro",
+	"lint": "biome lint --write .",
+    "lint:fix": "biome check --write .",
+	"format": "biome format --write ./src"
   }
 }' > package.json
 sleep 1
@@ -146,8 +150,6 @@ case $PKGMANAGER in
 	command bun add ${DEPENDENCIES}
 	;;
 esac
-
-# command ${PKGMANAGER} i -D ${DEPENDENCIES}
 
 echo "${RESET}╭─────╮  Houston:
 │ ᗒ ${GREEN}ᗜ ${RESET}ᗕ  ${GREEN}Dependencias Instaladas! ${RESET}📦
