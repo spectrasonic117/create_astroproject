@@ -99,10 +99,10 @@ echo "
 if [ -z "$1" ]; then
   read -p "${BCYAN}${BLACK} Name Project:${RESET} " PROJECT_NAME
 elif [ -d "$1" ]; then
-  echo "${RED}El proyecto ya existe."
+  echo "${RED}El proyecto ya existe, ${WHITE}Usa otro nombre!"
   exit 1
 elif [ "$1" == "--help" ] || [ "$1" == "-h" ]; then
-  echo "${RED}Usage:"
+  echo "${RED}Uso:"
   echo "${GREEN}mkastro ${BLUE}<project-name> <tailwind|unocss> <preact|react|svelte|vue>${RESET}"
   exit 1
 else
