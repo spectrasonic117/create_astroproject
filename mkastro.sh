@@ -186,7 +186,7 @@ if [ -z "$2" ]; then
 else
   case $2 in
     "tailwind")
-      command $PKGMANAGER astro add tailwindcss
+      command $PKGMANAGER astro add tailwind
       ;;
     "unocss")
       command $PKGMANAGER install unocss
